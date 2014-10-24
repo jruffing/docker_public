@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 BOX_NAME = ENV['BOX_NAME'] || "ubuntu"
-BOX_URI = ENV['BOX_URI'] || "http://files.vagrantup.com/precise64.box"
-VF_BOX_URI = ENV['BOX_URI'] || "http://files.vagrantup.com/precise64_vmware_fusion.box"
+BOX_URI = ENV['BOX_URI'] || "http://files.vagrantup.com/precise32.box"
+VF_BOX_URI = ENV['BOX_URI'] || "http://files.vagrantup.com/precise32_vmware_fusion.box"
 AWS_REGION = ENV['AWS_REGION']
 AWS_AMI    = ENV['AWS_AMI']
 

@@ -4,24 +4,25 @@
 	#############################################################
 
 	FROM ubuntu:14.04
-	MAINTAINER jruffing
+	MAINTAINER jruffing@gmail.com
 
+	# install appium dependencies
 	RUN apt-get update
-	RUN apt-get -y install nodejs git
+	RUN apt-get -y install nodejs npm git
+	RUN ln -s /usr/bin/nodejs /usr/bin/node
 
-	# create user
-	RUN mkdir /opt/appium
-	RUN useradd -m -s /bin/bash appium
-	RUN chown -R appium:appium /opt/appium
-	ENV HOME /home/appium
-
-	# install appium
-	RUN cd /opt && git clone https://github.com/appium/appium.git
+	# get appium src in /opt/appium/src folder
+	RUN mkdir -p /opt/appium/src && cd /opt/appium/src
+	RUN git clone https://github.com/appium/appium.git
 
 	# open appium port 
-	EXPOSE 4723
+	#EXPOSE 4723
 	
-	# start appium server
-	RUN cd /opt/appium
-	CMD ./reset.sh
-	CMD /opt/appium/node_modules/appium/bin/appium.js --device-ready-timeout 180
+	# install appium server to /opt/source/.appium-npm/ via npm
+	#RUN mkdir -p /opt/source/.appium-npm/
+	#RUN cd /opt/source/.appium-npm/ && npm install appium
+	
+	# run appium's latest server
+	#RUN mkdir -p /opt/source/appium/ && cd /opt/source/appium
+	#CMD ./reset.sh --ios
+	#CMD /opt/source/.appium-npm/node_modules/appium/bin/appium.js
